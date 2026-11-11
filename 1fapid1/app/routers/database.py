@@ -14,5 +14,5 @@ def check_db_health():
     return {
         "status": "success",
         "database": "not_checked",
-        "message": "Database health check endpoint created"
+        "message": "Database health check endpoint created in SEPARATE ROUTE"
     }

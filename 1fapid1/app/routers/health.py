@@ -14,3 +14,13 @@ def check_health():
         "status": "success",
         "message": "FilerNow API is running - healthy"
     }
+    
+# Writing the health routes in the same heal route file
+# this becomes: GET http://localhost:8000/api/v1/health/database
+@router.get("/database")
+def check_db_health():
+    return {
+        "status": "success",
+        "database": "not_checked",
+        "message": "Database health check endpoint created in HEALTH route file"
+    }
