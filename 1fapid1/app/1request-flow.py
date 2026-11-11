@@ -14,4 +14,4 @@
 
 # 2-Router: a collection of related endpoints, created with APIRouter().
 
-# 3-Endpoint: A function connected with HTTP method and URL through a decorator such as @router.get().
+# 3-Endpoint: A function connected with HTTP method and URL through a decorator such as @router.get(). - its tells the FastAPI: when an HTTP GET request matches this router's path, execute the function immediately below this decorator.

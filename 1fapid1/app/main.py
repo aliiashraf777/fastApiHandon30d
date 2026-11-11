@@ -1,7 +1,7 @@
 # 3FastApiHandon\1fapid1\app\main.py
 
 from fastapi import FastAPI
-from app.routers import health, database
+from app.routers import health, database, filings
 
 app = FastAPI(
     title="Filernow API ReCreate",
@@ -11,6 +11,7 @@ app = FastAPI(
 # Global API Base Prefix: Grouping everything under /api/v1
 app.include_router(health.router, prefix="/api/v1")
 app.include_router(database.router, prefix="/api/v1")
+app.include_router(filings.router, prefix="/api/v1")
 
 @app.get("/")
 def root():
