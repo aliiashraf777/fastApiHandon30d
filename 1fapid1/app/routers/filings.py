@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Path, Query
 from typing import Literal
+from app.schemas.filings import filing_response_list
 
 router = APIRouter(
     prefix="/taxpayers", # Prepends /taxpayers to all routes in this file
@@ -35,7 +36,10 @@ filingsData = [
     }
 ]
 
-@router.get("/{taxpayer_id}/filings")
+@router.get(
+    "/{taxpayer_id}/filings",
+    response_model=filing_response_list
+)
 def get_taxpayer_fillings(
     # Path Parameter: Extracted from the URL segment.
     # Must be an integer greater than or equal to (ge) 1. If 0 or "abc" is passed, FastAPI auto-returns a 422 Error.

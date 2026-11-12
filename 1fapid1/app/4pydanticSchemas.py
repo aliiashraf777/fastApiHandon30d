@@ -1,0 +1,1 @@
+# 2fastApi\1fastApiHandon30d\1fapid1\app\4pydanticSchemas.py
