@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Path, Query
 from typing import Literal
-from app.schemas.filings import filing_response_list
+from app.schemas.filings import FilingResponseList
 
 router = APIRouter(
     prefix="/taxpayers", # Prepends /taxpayers to all routes in this file
-    tags=["Taxpayer Fillings"] # Groups these endpoints together in the Swagger /docs UI
+    tags=["Taxpayer Filings"] # Groups these endpoints together in the Swagger /docs UI
 )
 
 # temporary mock data in python list form
@@ -38,12 +38,12 @@ filingsData = [
 
 @router.get(
     "/{taxpayer_id}/filings",
-    response_model=filing_response_list
+    response_model=FilingResponseList
 )
 def get_taxpayer_fillings(
+    taxpayer_id: int = Path(ge=1),
     # Path Parameter: Extracted from the URL segment.
     # Must be an integer greater than or equal to (ge) 1. If 0 or "abc" is passed, FastAPI auto-returns a 422 Error.
-    taxpayer_id: int = Path(ge=1),
     tax_year: int = Query(default=2025, ge=2020, le=2100),
     status: Literal["pending", "submitted", "approved"] | None = None,
 ):
