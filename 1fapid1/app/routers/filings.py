@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Path, Query
 from typing import Literal
-from app.schemas.filings import FilingResponseList
+from app.schemas.filings import FilingResponseListSM
 
 router = APIRouter(
     prefix="/taxpayers", # Prepends /taxpayers to all routes in this file
@@ -9,7 +9,7 @@ router = APIRouter(
 
 # temporary mock data in python list form
 # Simulating a database table usign a standard Python list of dictionaries
-filingsData = [
+filings_data_list = [
     {
         "id": 1,
         "taxpayer_id": 15,
@@ -36,9 +36,23 @@ filingsData = [
     }
 ]
 
+
+# GET: http://localhost:8000/api/v1/taxpayers/
+@router.get(
+    "/",
+    response_model=FilingResponseListSM
+)
+def get_taxpayer_filing_list():
+    return {
+        "status": "success",
+        "count": len(filings_data_list),
+        "data": filings_data_list,
+    }
+
+# GET: http://localhost:8000/api/v1/taxpayers/{taxpayer_id}/filings
 @router.get(
     "/{taxpayer_id}/filings",
-    response_model=FilingResponseList
+    response_model=FilingResponseListSM
 )
 def get_taxpayer_fillings(
     taxpayer_id: int = Path(ge=1),
@@ -48,10 +62,10 @@ def get_taxpayer_fillings(
     status: Literal["pending", "submitted", "approved"] | None = None,
 ):
     
-    # List Comprehension: Loops through filingsData and keeps only items matching BOTH taxpayer_id and tax_year
+    # List Comprehension: Loops through filings_data_list and keeps only items matching BOTH taxpayer_id and tax_year
     results = [
         filingD
-        for filingD in filingsData
+        for filingD in filings_data_list
         if filingD["taxpayer_id"] == taxpayer_id
         and filingD["tax_year"] == tax_year
     ]

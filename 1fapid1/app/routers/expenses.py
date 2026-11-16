@@ -7,7 +7,7 @@ from app.schemas.expenses import ExpenseCreateSM, ExpenseResponseSM, ExpenseUpda
 # HTTPException
 # a FastAPI exception that allows an endpoint to return an HTTP error response
 
-# stats
+# status
 # provides names constants for HTTP status codes.
 
 # return vs raise
@@ -126,5 +126,26 @@ def update_expense(
         
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
+        detail="Expense not found"
+    )
+    
+    
+# DELETE: http://localhost:8000/api/v1/expenses/{expense_id}
+@router.delete(
+    "/{expense_id}",
+    status_code=status.HTTP_204_NO_CONTENT 
+    # 1. sets the standards REST status code for successful deletion
+)
+def delete_expense(expense_id: int = Path(ge=1)):
+    for index, expense in enumerate(expenses_data_list):
+        # 2. Loop with enumerate() so we get both the index and the item
+        if expense["id"] == expense_id:
+            expenses_data_list.pop(index)
+            # 3. remove the item from the list by its index
+            return None
+            # 4. return none (http 204 resonses MUST not send a JSON body)
+    
+    raise HTTPException(
+        status_code=status.HTTP_204_NO_CONTENT,
         detail="Expense not found"
     )
