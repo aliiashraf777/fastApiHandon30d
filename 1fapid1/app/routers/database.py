@@ -9,7 +9,7 @@ router = APIRouter(
 )
 
 # This becomes: GET http://localhost:8000/api/v1/health/database
-@router.get("/")
+@router.get("/health")
 def check_db_health():
     return {
         "status": "success",

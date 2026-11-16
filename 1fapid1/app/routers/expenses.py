@@ -146,6 +146,6 @@ def delete_expense(expense_id: int = Path(ge=1)):
             # 4. return none (http 204 resonses MUST not send a JSON body)
     
     raise HTTPException(
-        status_code=status.HTTP_204_NO_CONTENT,
+        status_code=status.HTTP_404_NOT_FOUND,
         detail="Expense not found"
     )

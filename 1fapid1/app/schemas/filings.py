@@ -1,9 +1,9 @@
-# 2fastApi\1fastApiHandon30d\1fapid1\app\4pydanticSchemas.py
+# 3FastApiHandon\1fapid1\app\schemas\filings.py
 
 from typing import Literal
 from pydantic import BaseModel, Field
 
-filing_status = Literal[
+FilingStatus = Literal[
     "pending",
     "submitted",
     "approved"
@@ -15,8 +15,8 @@ class FilingResponseDataSM(BaseModel):
     taxpayer_id: int
     tax_year: int = Field(ge=2020, le=2100)
     # Field - adds validation constraints to the field
-    status: filing_status
-    # filing_status - restricts the status to the predefined literal string values
+    status: FilingStatus
+    # FilingStatus - restricts the status to the predefined literal string values
     
 class FilingResponseListSM(BaseModel):
     status: Literal["success"]
