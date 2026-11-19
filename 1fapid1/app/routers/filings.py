@@ -56,7 +56,7 @@ def get_taxpayer_filing_list():
     "/{taxpayer_id}/filings",
     response_model=FilingResponseListSM
 )
-def get_taxpayer_fillings(
+def get_taxpayer_filings(
     taxpayer_id: int = Path(ge=1),
     # Path Parameter: Extracted from the URL segment.
     # Must be an integer greater than or equal to (ge) 1. If 0 or "abc" is passed, FastAPI auto-returns a 422 Error.

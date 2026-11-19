@@ -50,7 +50,7 @@ def get_expenses():
     "/{expense_id}",
     response_model=ExpenseResponseSM
 )
-def get_expense_by_id(expense_id: int):
+def get_expense_by_id(expense_id: int = Path(ge=1)):
     
     for expense in expenses_data_list:
         if expense["id"] == expense_id:
@@ -120,7 +120,9 @@ def update_expense(
     for expense in expenses_data_list:
         if expense["id"] == expense_id:
             #exclude_unset=True IGNORE any fields the frontend did NOT include in the JSON body
-            update_data = payload.model_dump(exclude_unset=True)
+            update_data = payload.model_dump(exclude_unset=True, exclude_none=True)
+            # Because your field is declared str | None, Pydantic accepts that value. Your update could then set the expense title to None, violating your intended response schema.
+            # This ignores explicitly supplied None values as well as omitted fields.
             expense.update(update_data)
             return expense
         
