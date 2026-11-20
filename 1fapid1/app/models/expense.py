@@ -21,3 +21,7 @@ class ExpenseORM(Base):
 # mapped_column - defines a database column
 # primary_key=True - makes ID the primary key
 # nullable=False - Prevents the column from storing NULL
+
+# VERIFY YOUR ORM MODEL
+
+# python -c "from app.models.expense import ExpenseORM; print(ExpenseORM.__tablename__); print(list(ExpenseORM.__table__.columns.keys()))"
