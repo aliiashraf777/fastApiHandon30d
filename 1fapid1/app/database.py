@@ -22,6 +22,12 @@ SessionLocal = sessionmaker(
     autocommit=False
 )
 
+
+# 2. Declarative ORM Base
+class Base(DeclarativeBase):
+    pass
+
+
 def get_db():
     # 7. db is here reall session
     db = SessionLocal()
@@ -30,10 +36,11 @@ def get_db():
         yield db
     finally:
         db.close()
+        
 
-# 2. Declarative ORM Base
-class Base(DeclarativeBase):
-    pass
+# 8. table creation
+def create_tables():
+    Base.metadata.create_all(bind=engine)
 
 # --------------------
 
