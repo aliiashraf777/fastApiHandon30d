@@ -23,6 +23,7 @@ SessionLocal = sessionmaker(
 )
 
 def get_db():
+    # 7. db is here reall session
     db = SessionLocal()
     
     try:
@@ -70,7 +71,7 @@ class Base(DeclarativeBase):
 # NOTE: SessionLocal is not an actual database session. It is a factory that creates a SESSION INSTANCE.
 
 # e.g
-# db = SessionLocal
+# db = SessionLocal()
 
 # here "db" is actual session
 

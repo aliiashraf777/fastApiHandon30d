@@ -22,4 +22,4 @@ class FilingResponseListSM(BaseModel):
     status: Literal["success"]
     count: int = Field(ge=0)
     data: list[FilingResponseDataSM]
-    # Nested Schemas - this means data must contain a list of filling objects that follow the filing_response_data schema data structure
+    # Nested Schemas - this means data must contain a list of filling objects that follow the FilingResponseDataSM schema data structure

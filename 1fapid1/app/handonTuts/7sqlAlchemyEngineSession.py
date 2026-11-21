@@ -61,5 +61,9 @@
 
 # ---------------
 
+# 4. VERIFY YOUR DATABASE CONNECTION
+
+# lets test whether SQLAlchemy can establish a SQLite connection
+# python -c "from app.database import engine; connection = engine.connect(); print('Database connection successful!'); connection.close()"
 
 # ---------------
