@@ -39,6 +39,7 @@ def get_db():
         
 
 # 8. table creation
+# we need to ensure the model has been imported befoce calling create_tables()
 def create_tables():
     Base.metadata.create_all(bind=engine)
 
